@@ -1,0 +1,42 @@
+{
+  "name": "npm-cli",
+  "version": "1.0.0",
+  "description": "NPM CLI boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "build": "rm -rf dist && tsc -p .",
+    "bin:up": "npm run build && npm link",
+    "bin:down": "npm unlink",
+    "bin:restart": "npm run bin:down && npm run bin:up"
+  },
+  "bin": {
+    "cmd": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvstross/npm-cli.git"
+  },
+  "keywords": [
+    "command",
+    "cli"
+  ],
+  "author": "Levi Gonzales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lvstross/npm-cli/issues"
+  },
+  "homepage": "https://github.com/lvstross/npm-cli#readme",
+  "devDependencies": {
+    "@types/command-line-args": "^5.0.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/node": "^14.0.24",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "command-line-args": "^5.1.1",
+    "inquirer": "^7.3.2"
+  }
+}

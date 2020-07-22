@@ -10,7 +10,7 @@ import { PromptAnswers } from './types';
  * 
  * 1. Shows how to get command line arguments
  * 2. Shows how to get user input
- * 3. shows how to write to a file
+ * 3. Shows how to write to a file
  */
 
 // Get utils

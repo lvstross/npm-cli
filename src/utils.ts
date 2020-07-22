@@ -1,4 +1,6 @@
+import { writeFileSync } from 'fs';
 import chalk from 'chalk';
+import { PromptAnswers, Defaults } from './types';
 
 export const logInit = () => {
   console.log(`
@@ -22,7 +24,36 @@ export const getDirName = (): string | undefined => {
   return dirPath?.split('/')?.pop();
 };
 
-export const handler = (error: typeof Promise.reject) => {
+export const handler = (error: typeof Promise.reject): void => {
   console.log(chalk.red.bold(error));
+  process.exit();
+};
+
+export const parseAnswers = (answers: PromptAnswers | Defaults): string => {
+  const keywords = answers.keywords !== ''
+  ? (answers.keywords as string)
+    ?.split(',')
+    ?.map((word: string) => word?.replace(/\s/g, ''))
+  : [];
+
+  const pkgJS = {
+    name: answers.pkgName,
+    version: answers.version,
+    description: answers.description,
+    main: answers.entryPoint,
+    scripts: {
+      test: answers.testCommand
+    },
+    keywords,
+    author: answers.author,
+    license: answers.license
+  };
+
+  return JSON.stringify(pkgJS, null, 2);
+}
+
+export const writePackageJson = (pkgJSON: string): void => {
+  const dirPath = getDirPath();
+  writeFileSync(`${dirPath}/package.json`, pkgJSON);
   process.exit();
 };

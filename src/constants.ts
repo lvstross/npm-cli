@@ -2,54 +2,66 @@ import { OptionDefinition } from 'command-line-args';
 import { getDirName } from './utils';
 
 export const optionDefs: OptionDefinition[] = [
-  { name: 'yes', alias: 'y', type: Boolean, defaultValue: true },
+  { name: 'yes', alias: 'y', type: Boolean, defaultValue: false },
 ];
+
+export const defaults = {
+  pkgName: getDirName(),
+  version: '1.0.0',
+  description: '',
+  entryPoint: 'index.js',
+  testCommand: 'echo \"Error: no test specified\" && exit 1',
+  gitRepo: '',
+  keywords: '',
+  author: '',
+  license: 'ISC'
+};
 
 export const mainPrompts = [
   {
     name: 'pkgName',
     message: `package name:`,
-    default: getDirName()
+    default: defaults.pkgName
   },
   {
     name: 'version',
     message: 'version:',
-    default: '1.0.0'
+    default: defaults.version
   },
   {
     name: 'description',
     message: 'description: ',
-    default: ''
+    default: defaults.description
   },
   {
     name: 'entryPoint',
     message: 'entry point:',
-    default: 'index.js'
+    default: defaults.entryPoint
   },
   {
     name: 'testCommand',
     message: 'test command: ',
-    default: 'echo \"Error: no test specified\" && exit 1'
+    default: defaults.testCommand
   },
   {
     name: 'gitRepo',
     message: 'git repository: ',
-    default: ''
+    default: defaults.gitRepo
   },
   {
     name: 'keywords',
     message: 'keywords: ',
-    default: ''
+    default: defaults.keywords
   },
   {
     name: 'author',
     message: 'author: ',
-    default: ''
+    default: defaults.keywords
   },
   {
     name: 'license',
     message: 'license:',
-    default: 'ISC'
+    default: defaults.license
   }
 ];
 

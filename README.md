@@ -1,11 +1,7 @@
 # NPM CLI boilerplate
 
-## Install packages
-```bash
-npm i
-```
-
 ## Running the code
+Install packages `npm i`
 There are two methods to run the cli script.
 1. Run it through ts-node directly `npm start`
 2. Run it through the bin command

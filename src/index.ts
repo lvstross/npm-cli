@@ -19,6 +19,7 @@ const options = commandLineArgs(optionDefs);
 const dirPath = getDirPath();
 const dirName = getDirName();
 
+// If -y is passed, generate default package.json file
 if (options.yes) {
   const pkgJSON = parseAnswers(defaults);
   writePackageJson(pkgJSON);

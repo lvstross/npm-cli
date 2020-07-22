@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import chalk from 'chalk';
 import { PromptAnswers, Defaults } from './types';
 
-export const logInit = () => {
+export const logInit = (): void => {
   console.log(`
 This utility will walk you through creating a package.json file.
 It only covers the most common items, and tries to guess sensible defaults.
@@ -31,10 +31,10 @@ export const handler = (error: typeof Promise.reject): void => {
 
 export const parseAnswers = (answers: PromptAnswers | Defaults): string => {
   const keywords = answers.keywords !== ''
-  ? (answers.keywords as string)
-    ?.split(',')
-    ?.map((word: string) => word?.replace(/\s/g, ''))
-  : [];
+    ? (answers.keywords as string)
+      ?.split(',')
+      ?.map((word: string) => word?.replace(/\s/g, ''))
+    : [];
 
   const pkgJS = {
     name: answers.pkgName,
@@ -50,7 +50,7 @@ export const parseAnswers = (answers: PromptAnswers | Defaults): string => {
   };
 
   return JSON.stringify(pkgJS, null, 2);
-}
+};
 
 export const writePackageJson = (pkgJSON: string): void => {
   const dirPath = getDirPath();

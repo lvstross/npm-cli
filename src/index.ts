@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import commandLineArgs from 'command-line-args';
 import inquirer from 'inquirer';
-import { logInit, getDirPath, getDirName, handler, parseAnswers, writePackageJson } from './utils';
+import { logInit, getDirPath, handler, parseAnswers, writePackageJson } from './utils';
 import { optionDefs, mainPrompts, confirmPrompt, defaults } from './constants';
 import { PromptAnswers } from './types';
 
@@ -16,7 +16,6 @@ import { PromptAnswers } from './types';
 // Get utils
 const options = commandLineArgs(optionDefs);
 const dirPath = getDirPath();
-const dirName = getDirName();
 
 // If -y is passed, generate default package.json file
 if (options.yes) {
@@ -49,4 +48,4 @@ ${pkgJSON}
       })
       .catch(handler);
   })
-  .catch(handler)
+  .catch(handler);

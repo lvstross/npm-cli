@@ -1,4 +1,5 @@
 export interface PromptAnswers {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   [x: string]: Object;
 }
 

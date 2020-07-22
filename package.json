@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "build": "rm -rf dist && tsc -p .",
+    "lint": "eslint src --ext .ts",
     "bin:up": "npm run build && npm link",
     "bin:down": "npm unlink",
     "bin": "npm run bin:down && npm run bin:up"
@@ -31,6 +32,9 @@
     "@types/command-line-args": "^5.0.0",
     "@types/inquirer": "^6.5.0",
     "@types/node": "^14.0.24",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "eslint": "^7.5.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   },

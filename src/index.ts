@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import commandLineArgs from 'command-line-args';
 import inquirer from 'inquirer';
-import chalk from 'chalk';
 import { logInit, getDirPath, getDirName, handler, parseAnswers, writePackageJson } from './utils';
 import { optionDefs, mainPrompts, confirmPrompt, defaults } from './constants';
 import { PromptAnswers } from './types';

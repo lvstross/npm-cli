@@ -10,7 +10,7 @@ exports.defaults = {
     version: '1.0.0',
     description: '',
     entryPoint: 'index.js',
-    testCommand: 'echo \"Error: no test specified\" && exit 1',
+    testCommand: 'echo "Error: no test specified" && exit 1',
     gitRepo: '',
     keywords: '',
     author: '',
@@ -19,7 +19,7 @@ exports.defaults = {
 exports.mainPrompts = [
     {
         name: 'pkgName',
-        message: `package name:`,
+        message: 'package name:',
         default: exports.defaults.pkgName
     },
     {

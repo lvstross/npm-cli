@@ -10,7 +10,6 @@ const utils_1 = require("./utils");
 const constants_1 = require("./constants");
 const options = command_line_args_1.default(constants_1.optionDefs);
 const dirPath = utils_1.getDirPath();
-const dirName = utils_1.getDirName();
 if (options.yes) {
     const pkgJSON = utils_1.parseAnswers(constants_1.defaults);
     utils_1.writePackageJson(pkgJSON);

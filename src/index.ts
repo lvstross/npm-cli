@@ -41,7 +41,6 @@ ${pkgJSON}
     inquirer
       .prompt(confirmPrompt)
       .then(({ okay }: PromptAnswers) => {
-        console.log(okay);
         if (okay) {
           writePackageJson(pkgJSON);
         }

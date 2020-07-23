@@ -35,6 +35,15 @@ export const parseAnswers = (answers: PromptAnswers | Defaults): string => {
       ?.split(',')
       ?.map((word: string) => word?.replace(/\s/g, ''))
     : [];
+  
+  const gitRepo = answers.gitRepo;
+  const hasGitRepo = gitRepo !== '';
+  const repo = hasGitRepo
+    ? { repository: { type: 'git', url: `git+${gitRepo}.git` } }
+    : {};
+  const repoBugAndHomepage = hasGitRepo
+    ? { bugs: { url: `${gitRepo}/issues` }, homepage: `${gitRepo}#readme` }
+    : {};
 
   const pkgJS = {
     name: answers.pkgName,
@@ -44,9 +53,11 @@ export const parseAnswers = (answers: PromptAnswers | Defaults): string => {
     scripts: {
       test: answers.testCommand
     },
+    ...repo,
     keywords,
     author: answers.author,
-    license: answers.license
+    license: answers.license,
+    ...repoBugAndHomepage
   };
 
   return JSON.stringify(pkgJS, null, 2);

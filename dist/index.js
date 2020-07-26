@@ -25,21 +25,32 @@ if (options.yes) {
     utils_2.writePackageJson(pkgJSON);
 }
 (() => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(`
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See 'npm help json' for definitive documentation on these fields
+and exactly what they do.
+
+Use 'npm install <pkg>' afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+`);
     try {
-        utils_2.logInit();
         const answers = yield inquirer_1.default.prompt(constants_1.mainPrompts);
         const pkgJSON = utils_2.parseAnswers(answers);
         console.log(`
-  About to write to ${dirPath}/package.json:
+About to write to ${dirPath}/package.json:
 
-  ${pkgJSON}
-  `);
+${pkgJSON}
+`);
         const confirm = yield inquirer_1.default.prompt(constants_1.confirmPrompt);
         if (confirm.okay) {
             utils_2.writePackageJson(pkgJSON);
         }
     }
     catch (error) {
-        utils_2.handler(error);
+        throw Error(error);
     }
 }))();

@@ -1,30 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writePackageJson = exports.parseAnswers = exports.handler = exports.logInit = void 0;
+exports.writePackageJson = exports.parseAnswers = void 0;
 const fs_1 = require("fs");
-const chalk_1 = __importDefault(require("chalk"));
 const utils_1 = require("./helpers/utils");
-exports.logInit = () => {
-    console.log(`
-This utility will walk you through creating a package.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-See 'npm help json' for definitive documentation on these fields
-and exactly what they do.
-
-Use 'npm install <pkg>' afterwards to install a package and
-save it as a dependency in the package.json file.
-
-Press ^C at any time to quit.
-`);
-};
-exports.handler = (error) => {
-    console.log(chalk_1.default.red.bold(error));
-    process.exit();
-};
 exports.parseAnswers = (answers) => {
     var _a, _b;
     const keywords = answers.keywords !== ''

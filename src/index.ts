@@ -3,16 +3,8 @@ import inquirer from 'inquirer';
 import commandLineArgs from 'command-line-args';
 import { PromptAnswers } from './types';
 import { getDirPath } from './helpers/utils';
-import { logInit, handler, parseAnswers, writePackageJson } from './utils';
+import { parseAnswers, writePackageJson } from './utils';
 import { optionDefs, mainPrompts, confirmPrompt, defaults } from './constants';
-
-/**
- * NPM Init Example Script
- * 
- * 1. Shows how to get command line arguments
- * 2. Shows how to get user input
- * 3. Shows how to write to a file
- */
 
 // Get utils
 const options = commandLineArgs(optionDefs);
@@ -25,21 +17,32 @@ if (options.yes) {
 }
 
 (async () => {
+  console.log(`
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See 'npm help json' for definitive documentation on these fields
+and exactly what they do.
+
+Use 'npm install <pkg>' afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+`);
   try {
-    logInit();
     const answers: PromptAnswers = await inquirer.prompt(mainPrompts);
     const pkgJSON = parseAnswers(answers);
     console.log(`
-  About to write to ${dirPath}/package.json:
+About to write to ${dirPath}/package.json:
 
-  ${pkgJSON}
-  `);
+${pkgJSON}
+`);
 
     const confirm: PromptAnswers = await inquirer.prompt(confirmPrompt);
     if (confirm.okay) {
       writePackageJson(pkgJSON);
     }    
   } catch (error) {
-    handler(error);
+    throw Error(error);
   }
 })();

@@ -1,27 +1,6 @@
 import { writeFileSync } from 'fs';
-import chalk from 'chalk';
 import { PromptAnswers, Defaults } from './types';
 import { getDirPath } from './helpers/utils';
-
-export const logInit = (): void => {
-  console.log(`
-This utility will walk you through creating a package.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-See 'npm help json' for definitive documentation on these fields
-and exactly what they do.
-
-Use 'npm install <pkg>' afterwards to install a package and
-save it as a dependency in the package.json file.
-
-Press ^C at any time to quit.
-`);
-};
-
-export const handler = (error: typeof Promise.reject): void => {
-  console.log(chalk.red.bold(error));
-  process.exit();
-};
 
 export const parseAnswers = (answers: PromptAnswers | Defaults): string => {
   const keywords = answers.keywords !== ''

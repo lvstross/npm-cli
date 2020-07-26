@@ -1,13 +1,15 @@
-# NPM CLI boilerplate
+# NPM CLI Starter
+This repo is meant to be a starting point for building NPM ClI packages. It comes with the three essential components of building an publishable NPM CLI.
+1. Starter bin command set up
+2. Executable node script
+3. Build scripts and development workflow.
 
-## Running the code
-Install packages `npm i`
-There are two methods to run the cli script.
-1. Run it through ts-node directly `npm start`
-2. Run it through the bin command
+## Example Code
+The starter code is an example of the common command `npm init` and `npm init -y`.
+This code provides a base example of the three common tasks of command line tools
+1. Getting command line arguments
+2. Getting user input
+3. Writing to files
 
-Using the seconds options involes a small amount of set up.
-1. Open the `package.json` file and edit the `bin` command string `"cmd"` to whatever you want it to be. Pick something unique that wouldn't already be in your system bin directory.
-2. Run `npm run bin:up` to build the script with Typescript and link the code to your bin.
-3. When you've made changes to the code, be sure to run `npm run bin`.
-4. When you want to unlink your code to your bin, run `npm run bin:down`.
+## Running The Example Code
+Install packages `npm i`. At this point you can simply run the example with `npm start`. In order to run the example with the `-y` argument, run `npm run bin:up`. This will run the build script that will convert the typescript code to javascript and then run `npm link` to link the `cmd` command to your bin. When you've made changes to the code, be sure to run `npm run bin` to rebuild build the code. To unlink the `cmd` command from your bin, run `npm run bin:down`.

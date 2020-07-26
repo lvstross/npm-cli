@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -15,23 +24,22 @@ if (options.yes) {
     const pkgJSON = utils_2.parseAnswers(constants_1.defaults);
     utils_2.writePackageJson(pkgJSON);
 }
-utils_2.logInit();
-inquirer_1.default
-    .prompt(constants_1.mainPrompts)
-    .then((answers) => {
-    const pkgJSON = utils_2.parseAnswers(answers);
-    console.log(`
-About to write to ${dirPath}/package.json:
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        utils_2.logInit();
+        const answers = yield inquirer_1.default.prompt(constants_1.mainPrompts);
+        const pkgJSON = utils_2.parseAnswers(answers);
+        console.log(`
+  About to write to ${dirPath}/package.json:
 
-${pkgJSON}
-`);
-    inquirer_1.default
-        .prompt(constants_1.confirmPrompt)
-        .then(({ okay }) => {
-        if (okay) {
+  ${pkgJSON}
+  `);
+        const confirm = yield inquirer_1.default.prompt(constants_1.confirmPrompt);
+        if (confirm.okay) {
             utils_2.writePackageJson(pkgJSON);
         }
-    })
-        .catch(utils_2.handler);
-})
-    .catch(utils_2.handler);
+    }
+    catch (error) {
+        utils_2.handler(error);
+    }
+}))();

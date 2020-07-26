@@ -24,28 +24,22 @@ if (options.yes) {
   writePackageJson(pkgJSON);
 }
 
-// Log initial output
-logInit();
-
-// Inquirer for main prompts
-inquirer
-  .prompt(mainPrompts)
-  .then((answers: PromptAnswers) => {
+(async () => {
+  try {
+    logInit();
+    const answers: PromptAnswers = await inquirer.prompt(mainPrompts);
     const pkgJSON = parseAnswers(answers);
     console.log(`
-About to write to ${dirPath}/package.json:
+  About to write to ${dirPath}/package.json:
 
-${pkgJSON}
-`);
+  ${pkgJSON}
+  `);
 
-    // Inquirer for confirmation of output
-    inquirer
-      .prompt(confirmPrompt)
-      .then(({ okay }: PromptAnswers) => {
-        if (okay) {
-          writePackageJson(pkgJSON);
-        }
-      })
-      .catch(handler);
-  })
-  .catch(handler);
+    const confirm: PromptAnswers = await inquirer.prompt(confirmPrompt);
+    if (confirm.okay) {
+      writePackageJson(pkgJSON);
+    }    
+  } catch (error) {
+    handler(error);
+  }
+})();

@@ -1,5 +1,5 @@
 import { OptionDefinition } from 'command-line-args';
-import { getDirName } from './utils';
+import { getDirName } from './helpers/utils';
 
 export const optionDefs: OptionDefinition[] = [
   { name: 'yes', alias: 'y', type: Boolean, defaultValue: false },

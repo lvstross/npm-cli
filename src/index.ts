@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-import commandLineArgs from 'command-line-args';
 import inquirer from 'inquirer';
-import { logInit, getDirPath, handler, parseAnswers, writePackageJson } from './utils';
-import { optionDefs, mainPrompts, confirmPrompt, defaults } from './constants';
+import commandLineArgs from 'command-line-args';
 import { PromptAnswers } from './types';
+import { getDirPath } from './helpers/utils';
+import { logInit, handler, parseAnswers, writePackageJson } from './utils';
+import { optionDefs, mainPrompts, confirmPrompt, defaults } from './constants';
 
 /**
  * NPM Init Example Script

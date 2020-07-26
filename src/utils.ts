@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs';
 import chalk from 'chalk';
 import { PromptAnswers, Defaults } from './types';
+import { getDirPath } from './helpers/utils';
 
 export const logInit = (): void => {
   console.log(`
@@ -15,13 +16,6 @@ save it as a dependency in the package.json file.
 
 Press ^C at any time to quit.
 `);
-};
-
-export const getDirPath = (): string => `${process.env.INIT_CWD || process.env.PWD}`;
-
-export const getDirName = (): string | undefined => {
-  const dirPath = getDirPath();
-  return dirPath?.split('/')?.pop();
 };
 
 export const handler = (error: typeof Promise.reject): void => {

@@ -3,9 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writePackageJson = exports.parseAnswers = exports.handler = exports.getDirName = exports.getDirPath = exports.logInit = void 0;
+exports.writePackageJson = exports.parseAnswers = exports.handler = exports.logInit = void 0;
 const fs_1 = require("fs");
 const chalk_1 = __importDefault(require("chalk"));
+const utils_1 = require("./helpers/utils");
 exports.logInit = () => {
     console.log(`
 This utility will walk you through creating a package.json file.
@@ -19,12 +20,6 @@ save it as a dependency in the package.json file.
 
 Press ^C at any time to quit.
 `);
-};
-exports.getDirPath = () => `${process.env.INIT_CWD || process.env.PWD}`;
-exports.getDirName = () => {
-    var _a;
-    const dirPath = exports.getDirPath();
-    return (_a = dirPath === null || dirPath === void 0 ? void 0 : dirPath.split('/')) === null || _a === void 0 ? void 0 : _a.pop();
 };
 exports.handler = (error) => {
     console.log(chalk_1.default.red.bold(error));
@@ -48,7 +43,7 @@ exports.parseAnswers = (answers) => {
     return JSON.stringify(pkgJS, null, 2);
 };
 exports.writePackageJson = (pkgJSON) => {
-    const dirPath = exports.getDirPath();
+    const dirPath = utils_1.getDirPath();
     fs_1.writeFileSync(`${dirPath}/package.json`, pkgJSON);
     process.exit();
 };

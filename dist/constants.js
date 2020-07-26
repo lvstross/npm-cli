@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.confirmPrompt = exports.mainPrompts = exports.defaults = exports.optionDefs = void 0;
-const utils_1 = require("./utils");
+const utils_1 = require("./helpers/utils");
 exports.optionDefs = [
     { name: 'yes', alias: 'y', type: Boolean, defaultValue: false },
 ];
